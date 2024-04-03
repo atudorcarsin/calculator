@@ -1,5 +1,5 @@
 const operations = {
-    "+": (x, y) => x + y,
+    "+": (x, y) => parseInt(x) + parseInt(y),
     "-": (x, y) => x - y,
     "*": (x, y) => x * y,
     "/": (x, y) => x / y,
@@ -10,7 +10,7 @@ let secondNum;
 let operator;
 
 const operate = () => {
-
+    document.getElementById("display").textContent = operations[operator](firstNum, secondNum);
 }
 
 let display = "";
@@ -64,4 +64,11 @@ divideButton.addEventListener("click", (e) => {
     document.querySelector("#display").textContent = "";
     operator = e.target.textContent;
     display = "";
+});
+
+const equalButton = document.getElementById("=");
+equalButton.addEventListener("click", (e) => {
+    secondNum = display;
+    display = "";
+    operate();
 });
