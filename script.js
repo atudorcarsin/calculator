@@ -1,5 +1,8 @@
 const operations = {
-    "+": (x, y) => parseInt(x) + parseInt(y),
+    "+": (x, y) => {
+        if (!y) return x;
+        return x + y;
+    },
     "-": (x, y) => x - y,
     "*": (x, y) => x * y,
     "/": (x, y) => x / y,
