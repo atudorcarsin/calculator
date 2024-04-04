@@ -1,11 +1,11 @@
 const operations = {
     "+": (x, y) => {
         if (!y) return x;
-        return parseFloat(x) + parseFloat(y);
+        return Math.round((parseFloat(x) + parseFloat(y)) * 1000) / 1000;
     },
-    "-": (x, y) => x - y,
-    "*": (x, y) => x * y,
-    "/": (x, y) => x / y,
+    "-": (x, y) => Math.round((x - y) * 1000) / 1000,
+    "*": (x, y) => Math.round(x * y * 1000) / 1000,
+    "/": (x, y) => Math.round(x / y * 1000) / 1000,
 }
 
 let firstNum;
