@@ -1,7 +1,7 @@
 const operations = {
     "+": (x, y) => {
         if (!y) return x;
-        return x + y;
+        return parseFloat(x) + parseFloat(y);
     },
     "-": (x, y) => x - y,
     "*": (x, y) => x * y,
