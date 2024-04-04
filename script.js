@@ -69,3 +69,9 @@ equalButton.addEventListener("click", (e) => {
     firstNum = "";
     secondNum = "";
 });
+
+const delButton = document.getElementById("del");
+delButton.addEventListener("click", () => {
+    display = display.substring(0, display.length - 1);
+    document.getElementById("display").textContent = display;
+});
