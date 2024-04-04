@@ -32,43 +32,30 @@ clear.addEventListener("click", () => {
     firstNum = "";
     secondNum = "";
     operator = "";
+    document.getElementById("equation").innerText = "";
 });
 
-const addButton = document.getElementById("+");
-addButton.addEventListener("click", (e) => {
-    firstNum = document.querySelector("#display").textContent;
-    document.querySelector("#display").textContent = "";
-    operator = e.target.textContent;
-    display = "";
-});
-
-const subtractButton = document.getElementById("-");
-subtractButton.addEventListener("click", (e) => {
-    firstNum = document.querySelector("#display").textContent;
-    document.querySelector("#display").textContent = "";
-    operator = e.target.textContent;
-    display = "";
-});
-
-const multiplyButton = document.getElementById("*");
-multiplyButton.addEventListener("click", (e) => {
-    firstNum = document.querySelector("#display").textContent;
-    document.querySelector("#display").textContent = "";
-    operator = e.target.textContent;
-    display = "";
-});
-
-const divideButton = document.getElementById("/");
-divideButton.addEventListener("click", (e) => {
-    firstNum = document.querySelector("#display").textContent;
-    document.querySelector("#display").textContent = "";
-    operator = e.target.textContent;
-    display = "";
+const operationButtons = document.querySelectorAll(".operation");
+operationButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        if (!firstNum) {
+            firstNum = document.querySelector("#display").textContent;
+        }
+        document.querySelector("#display").textContent = "";
+        operator = e.target.textContent;
+        display = "";
+        document.getElementById("equation").innerText = firstNum + operator;
+    });
 });
 
 const equalButton = document.getElementById("=");
 equalButton.addEventListener("click", (e) => {
     secondNum = display;
+    if (secondNum) {
+        document.getElementById("equation").textContent += secondNum;
+    }
     display = "";
     operate();
+    firstNum = "";
+    secondNum = "";
 });

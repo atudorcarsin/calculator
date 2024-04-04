@@ -1,5 +1,6 @@
 div {
     text-align: center;
+    margin: 5px;
 }
 
 button {
@@ -13,4 +14,10 @@ button {
     font-size: 30px;
     min-height: 35px;
     margin: 20px;
+}
+
+#equation {
+    font-size: 30px;
+    min-height: 35px;
+    text-align: center;
 }
