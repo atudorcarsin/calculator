@@ -5,7 +5,10 @@ const operations = {
     },
     "-": (x, y) => Math.round((x - y) * 1000) / 1000,
     "*": (x, y) => Math.round(x * y * 1000) / 1000,
-    "/": (x, y) => Math.round(x / y * 1000) / 1000,
+    "/": (x, y) => {
+        if (Math.round(x / y * 1000) / 1000 == Infinity) return undefined;
+        return Math.round(x / y * 1000) / 1000;
+    },
 }
 
 let firstNum;
