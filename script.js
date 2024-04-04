@@ -38,13 +38,16 @@ clear.addEventListener("click", () => {
 const operationButtons = document.querySelectorAll(".operation");
 operationButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
+        if (firstNum && display) {
+            document.getElementById("=").click();
+        }
+        operator = e.target.textContent;
         if (!firstNum) {
             firstNum = document.querySelector("#display").textContent;
+            display = "";
+            document.querySelector("#display").textContent = "";
+            document.getElementById("equation").textContent += firstNum + operator;
         }
-        document.querySelector("#display").textContent = "";
-        operator = e.target.textContent;
-        display = "";
-        document.getElementById("equation").innerText = firstNum + operator;
     });
 });
 
@@ -55,6 +58,7 @@ equalButton.addEventListener("click", (e) => {
         document.getElementById("equation").textContent += secondNum;
     }
     display = "";
+    document.getElementById("equation").innerText = "";
     operate();
     firstNum = "";
     secondNum = "";
