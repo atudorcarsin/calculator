@@ -28,6 +28,11 @@ for (let i = 0; i < 10; i++) {
         let p = document.querySelector("#display");
         p.textContent = display;
     });
+    addEventListener("keydown", (e) => {
+        if (e.key == i) {
+            button.click();
+        }
+    });
 }
 
 const clear = document.querySelector("#clear");
@@ -55,6 +60,11 @@ operationButtons.forEach((button) => {
             document.getElementById("equation").textContent += firstNum + operator;
         }
     });
+    addEventListener("keydown", (e) => {
+        if (e.key == button.id) {
+            button.click();
+        }
+    });
 });
 
 const equalButton = document.getElementById("=");
@@ -69,9 +79,19 @@ equalButton.addEventListener("click", (e) => {
     firstNum = "";
     secondNum = "";
 });
+addEventListener("keydown", (e) => {
+    if (e.key == "Enter" || e.key == equalButton.id) {
+        equalButton.click();
+    }
+});
 
 const delButton = document.getElementById("del");
 delButton.addEventListener("click", () => {
     display = display.substring(0, display.length - 1);
     document.getElementById("display").textContent = display;
+});
+addEventListener("keydown", (e) => {
+    if (e.key == "Backspace") {
+        delButton.click();
+    }
 });
