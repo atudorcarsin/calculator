@@ -25,7 +25,7 @@ let display = "";
 for (let i = 0; i < 10; i++) {
     let button = document.getElementById(i);
     button.addEventListener("click", (e) => {
-        if (display[display.length - 2] != "." && !isNaN(display)) {
+        if (display[display.length - 4] != "." && (!isNaN(display) || display == "-")) {
             display += e.target.value;
             let p = document.querySelector("#display");
             p.textContent = display;
@@ -121,5 +121,13 @@ dotButton.addEventListener("click", (e) => {
 addEventListener("keydown", (e) => {
     if (e.key == ".") {
         dotButton.click();
+    }
+});
+
+const signButton = document.querySelector("#sign");
+signButton.addEventListener("click", (e) => {
+    if (!isNaN(display)) {
+        display *= -1;
+        document.getElementById("display").innerText = display;
     }
 });
