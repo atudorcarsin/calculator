@@ -6,7 +6,7 @@ const operations = {
     "-": (x, y) => Math.round((x - y) * 1000) / 1000,
     "*": (x, y) => Math.round(x * y * 1000) / 1000,
     "/": (x, y) => {
-        if (Math.round(x / y * 1000) / 1000 == Infinity) return "undefined";
+        if (Math.round(x / y * 1000) / 1000 == Infinity || isNaN(firstNum / secondNum)) return "undefined";
         return Math.round(x / y * 1000) / 1000;
     },
 }
@@ -130,5 +130,35 @@ signButton.addEventListener("click", (e) => {
         display *= -1;
         display = display.toString();
         document.getElementById("display").innerText = display;
+    }
+});
+
+const themeButton = document.querySelector("input");
+themeButton.addEventListener("change", (e) => {
+    if (e.target.checked) {
+        document.querySelector("body").bgColor = "#1f1f1f";
+        document.querySelectorAll("button").forEach((btn) => {
+            if (btn.className != "invisible") {
+                btn.style.backgroundColor = "#28292a";
+                btn.style.borderColor = "#ffffff";
+                btn.style.color = "#ffffff";
+            }
+        });
+        document.querySelector("p").style.color = "white";
+        document.querySelector("#display").style.color = "white";
+        document.querySelector("#equation").style.color = "white";
+    }
+    else {
+        document.querySelector("body").bgColor = "#ffffff";
+        document.querySelectorAll("button").forEach((btn) => {
+            if (btn.className != "invisible") {
+                btn.style.backgroundColor = "#ffffff";
+                btn.style.borderColor = "#000000";
+                btn.style.color = "#000000";
+            }
+        });
+        document.querySelector("p").style.color = "black";
+        document.querySelector("#display").style.color = "black";
+        document.querySelector("#equation").style.color = "black";
     }
 });
