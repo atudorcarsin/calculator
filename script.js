@@ -126,8 +126,9 @@ addEventListener("keydown", (e) => {
 
 const signButton = document.querySelector("#sign");
 signButton.addEventListener("click", (e) => {
-    if (!isNaN(display)) {
+    if (!isNaN(display) && display) {
         display *= -1;
+        display = display.toString();
         document.getElementById("display").innerText = display;
     }
 });
