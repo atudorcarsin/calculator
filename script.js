@@ -17,6 +17,7 @@ let operator;
 
 const operate = () => {
     document.getElementById("display").textContent = operations[operator](firstNum, secondNum);
+    checkDisplayElement();
     display = document.getElementById("display").textContent;
 }
 
@@ -29,6 +30,7 @@ for (let i = 0; i < 10; i++) {
             display += e.target.value;
             let p = document.querySelector("#display");
             p.textContent = display;
+            checkDisplayElement();
         }
     });
     addEventListener("keydown", (e) => {
@@ -43,6 +45,7 @@ clear.addEventListener("click", () => {
     display = "";
     let p = document.querySelector("#display");
     p.textContent = display;
+    checkDisplayElement();
     firstNum = "";
     secondNum = "";
     operator = "";
@@ -61,11 +64,15 @@ operationButtons.forEach((button) => {
             document.getElementById("=").click();
         }
         operator = e.target.textContent;
+        if (parseFloat(firstNum) && !display) {
+            document.getElementById("equation").textContent = firstNum + operator;
+        }
         if (!firstNum) {
             firstNum = document.querySelector("#display").textContent;
             if (!isNaN(firstNum)) {
                 display = "";
                 document.querySelector("#display").textContent = "";
+                checkDisplayElement();
                 document.getElementById("equation").textContent += firstNum + operator;
             }
         }
@@ -104,6 +111,7 @@ delButton.addEventListener("click", () => {
         display = display.substring(0, display.length - 1);
     }
     document.getElementById("display").textContent = display;
+    checkDisplayElement();
 });
 addEventListener("keydown", (e) => {
     if (e.key == "Backspace") {
@@ -116,6 +124,7 @@ dotButton.addEventListener("click", (e) => {
     if (display.indexOf(".") < 0) {
         display += ".";
         document.querySelector("#display").innerText = display;
+        checkDisplayElement();
     }
 });
 addEventListener("keydown", (e) => {
@@ -130,6 +139,7 @@ signButton.addEventListener("click", (e) => {
         display *= -1;
         display = display.toString();
         document.getElementById("display").innerText = display;
+        checkDisplayElement();
     }
 });
 
@@ -162,3 +172,21 @@ themeButton.addEventListener("change", (e) => {
         document.querySelector("#equation").style.color = "black";
     }
 });
+
+const displayElement = document.querySelector("#display");
+const observer = new MutationObserver(checkDisplayElement);
+const options = {
+    characterData: true,
+    subtree: true
+}
+observer.observe(displayElement, options);
+function checkDisplayElement() {
+    if (displayElement && displayElement[0] == 0) {
+        display = display.substring(1);
+        displayElement.textContent = display;
+    }
+    if (displayElement.textContent == "") {
+        display = "";
+        displayElement.textContent = "0";
+    }
+}
