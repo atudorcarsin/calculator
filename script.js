@@ -6,7 +6,7 @@ const operations = {
     "-": (x, y) => Math.round((x - y) * 1000) / 1000,
     "*": (x, y) => Math.round(x * y * 1000) / 1000,
     "/": (x, y) => {
-        if (Math.round(x / y * 1000) / 1000 == Infinity || isNaN(firstNum / secondNum)) return "undefined";
+        if (Math.round(x / y * 1000) / 1000 == Infinity || Math.round(x / y * 1000) / 1000 == -Infinity || isNaN(firstNum / secondNum)) return "undefined";
         return Math.round(x / y * 1000) / 1000;
     },
 }
@@ -190,3 +190,15 @@ function checkDisplayElement() {
         displayElement.textContent = "0";
     }
 }
+
+const buttons = document.querySelectorAll("button");
+buttons.forEach((btn) => {
+    btn.addEventListener("mouseover", () => {
+        if (btn.className != "invisible") {
+            btn.style.backgroundColor = "darkGrey";
+        }
+    });
+    btn.addEventListener("mouseout", () => {
+        themeButton.dispatchEvent(new Event("change"));
+    });
+})

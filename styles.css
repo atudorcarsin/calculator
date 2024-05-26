@@ -30,6 +30,9 @@ button {
     background-color: transparent;
     border-color: transparent;
 }
+.invisible:hover {
+    background-color: transparent;
+}
 
 input {
     display: inline;
