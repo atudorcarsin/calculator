@@ -26,7 +26,7 @@ let display = "";
 for (let i = 0; i < 10; i++) {
     let button = document.getElementById(i);
     button.addEventListener("click", (e) => {
-        if (display[display.length - 4] != "." && (!isNaN(display) || display == "-")) {
+        if (display[display.length - 4] != "." && (!isNaN(display) || display == "-" || display == ".")) {
             display += e.target.value;
             let p = document.querySelector("#display");
             p.textContent = display;
